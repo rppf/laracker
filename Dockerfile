@@ -1,24 +1,26 @@
 FROM php:alpine
 LABEL maintainer="hitalos <hitalos@gmail.com>"
 
-USER root
-
 RUN apk update && apk upgrade && apk add bash git
+
+COPY composer.lock composer.json /var/www/
+
+COPY .env.example /var/www
 
 # Install PHP extensions
 ADD install-php.sh /usr/sbin/install-php.sh
-RUN /usr/sbin/install-php.sh
-
-RUN mv .env.example .env && php artisan key:generate
+RUN chmod +x /usr/sbin/install-php.sh && /usr/sbin/install-php.sh
 
 # Download and install NodeJS
 ENV NODE_VERSION 10.0.0
 ADD install-node.sh /usr/sbin/install-node.sh
-RUN sudo /usr/sbin/install-node.sh
+RUN chmod +x /usr/sbin/install-node.sh && /usr/sbin/install-node.sh
 RUN npm i -g yarn
 
-RUN mkdir -p /etc/ssl/certs && update-ca-certificates
-
 WORKDIR /var/www
+
+COPY . /var/www
+
+RUN mv .env.example .env
 
 RUN composer install
