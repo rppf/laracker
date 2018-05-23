@@ -8,7 +8,7 @@ app:
     environment:
         DB_HOST: db
         DB_DATABASE: dbname
-        DB_USERNAME: username
+        DB_USERNAME: root
         DB_PASSWORD: p455w0rd
         DB_CONNECTION: mysql
 
@@ -16,9 +16,8 @@ db:
     image: mariadb
     environment:
         MYSQL_DATABASE: dbname
-        MYSQL_USER: username
+        MYSQL_USER: root
         MYSQL_PASSWORD: p455w0rd
-	MYSQL_ROOT_PASSWORD: example
 
 webserver:
     image: nginx:1.10-alpine
