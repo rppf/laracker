@@ -1,6 +1,8 @@
 FROM php:alpine
 LABEL maintainer="hitalos <hitalos@gmail.com>"
 
+USER root
+
 RUN apk update && apk upgrade && apk add bash git
 
 # Install PHP extensions
