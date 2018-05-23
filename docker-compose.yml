@@ -17,7 +17,7 @@ db:
     environment:
         MYSQL_DATABASE: dbname
         MYSQL_USER: root
-        MYSQL_PASSWORD: p455w0rd
+        MYSQL_ROOT_PASSWORD: p455w0rd
 
 webserver:
     image: nginx:1.10-alpine
