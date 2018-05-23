@@ -14,7 +14,7 @@ RUN mv .env.example .env && php artisan key:generate
 # Download and install NodeJS
 ENV NODE_VERSION 10.0.0
 ADD install-node.sh /usr/sbin/install-node.sh
-RUN /usr/sbin/install-node.sh
+RUN sudo /usr/sbin/install-node.sh
 RUN npm i -g yarn
 
 RUN mkdir -p /etc/ssl/certs && update-ca-certificates

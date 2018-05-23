@@ -18,6 +18,7 @@ db:
         MYSQL_DATABASE: dbname
         MYSQL_USER: username
         MYSQL_PASSWORD: p455w0rd
+	MYSQL_ROOT_PASSWORD: example
 
 webserver:
     image: nginx:1.10-alpine
