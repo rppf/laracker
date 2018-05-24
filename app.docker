@@ -1,7 +1,10 @@
-FROM php:7-fpm
+FROM php:7
 
-ADD install-php.sh /usr/sbin/install-php.sh
-RUN chmod +x /usr/sbin/install-php.sh && /usr/sbin/install-php.sh
+RUN apt-get update -y && apt-get install -y openssl zip unzip git
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN docker-php-ext-install pdo mbstring
 
 COPY composer.lock composer.json /var/www/
 
