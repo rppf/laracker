@@ -4,6 +4,12 @@ RUN apt-get update && apt-get install -y libmcrypt-dev mysql-client && docker-ph
 
 COPY composer.lock composer.json /var/www/
 
+COPY .env.example /var/www
+
 WORKDIR /var/www
+
+RUN cp .env.example .env
+
+RUN php artisan key:generate
 
 RUN composer install
