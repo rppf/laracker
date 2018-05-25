@@ -8,7 +8,9 @@ RUN docker-php-ext-install pdo mbstring
 
 COPY composer.lock composer.json /var/www/
 
-COPY .env.example /var/www
+COPY database /var/www/database
+
+COPY .env.example /var/www/
 
 WORKDIR /var/www
 
