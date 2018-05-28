@@ -1,4 +1,4 @@
-FROM php:7
+FROM php:7.1-fpm
 
 RUN apt-get update -y && apt-get install -y openssl zip unzip git
 
@@ -13,6 +13,8 @@ COPY database /var/www/database
 COPY .env.example /var/www/
 
 WORKDIR /var/www
+
+COPY . /var/www
 
 RUN cp .env.example .env
 
