@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   web:
-    image: rpp/laravel-web
+    image: rppf/laravel-web
     volumes:
       - ./:/var/www
     ports:
