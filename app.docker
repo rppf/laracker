@@ -12,6 +12,8 @@ COPY composer.lock composer.json /var/www/
 
 COPY database /var/www/database/
 
+COPY artisan /var/www/
+
 RUN composer install
 
 COPY . /var/www/
