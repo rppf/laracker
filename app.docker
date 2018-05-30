@@ -10,13 +10,11 @@ WORKDIR /var/www/
 
 COPY composer.lock composer.json /var/www/
 
+COPY . /var/www/
+
 COPY database /var/www/database/
 
-COPY artisan /var/www/
-
 RUN composer install
-
-COPY . /var/www/
 
 COPY .env.example /var/www/
 
