@@ -6,17 +6,13 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN docker-php-ext-install pdo mbstring
 
-WORKDIR /var/www/
-
 COPY composer.lock composer.json /var/www/
 
-COPY . /var/www/
-
-RUN chgrp -R www-data storage bootstrap/cache
-
-RUN chmod -R ug+rwx storage bootstrap/cache
+WORKDIR /var/www/
 
 RUN composer install
+
+COPY . /var/www/
 
 COPY database /var/www/database/
 
@@ -26,3 +22,4 @@ RUN cp .env.example .env
 
 RUN php artisan key:generate
 
+CMD ["chown","-R", "www-data:www-data", "/var/www/"]
