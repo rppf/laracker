@@ -1,35 +1,35 @@
-version: '2'
+version: '2.1'
 
 services:
-    web:
-        build:
-            context: ./
-            dockerfile: web.docker
-        volumes:
-            - ./:/var/www
-        ports:
-            - "8080:80"
-            - "443:443"
-            - "9000:9000"
-        links:
-            - app
+  web:
+    build:
+      context: ./
+      dockerfile: web.docker
+    volumes:
+      - ./:/var/www
+    ports:
+      - "8080:80"
+      - "443:443"
+      - "9000:9000"
+    links:
+      - app
 
-    app:
-        build:
-            context: ./
-            dockerfile: app.docker
-        volumes:
-            - ./:/var/www
-        links:
-            - database
-        environment:
-            - "DB_PORT=3306"
-            - "DB_HOST=database"
+  app:
+    build:
+      context: ./
+      dockerfile: app.docker
+    volumes:
+      - ./:/var/www
+    links:
+      - database
+    environment:
+      - "DB_PORT=3306"
+      - "DB_HOST=database"
 
-    database:
-        image: mysql:5.7.18
-        environment:
-            - "MYSQL_ROOT_PASSWORD=secret"
-            - "MYSQL_DATABASE=homestead"
-        ports:
-            - "33061:3306"
+  database:
+    image: mysql:5.7.18
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_DATABASE=homestead"
+    ports:
+      - "33061:3306"
