@@ -12,9 +12,13 @@ COPY composer.lock composer.json /var/www/
 
 COPY . /var/www/
 
-COPY database /var/www/database/
+RUN chgrp -R www-data storage bootstrap/cache
 
-RUN composer install
+RUN chmod -R ug+rwx storage bootstrap/cache
+
+RUN composer install -d=/var/www/
+
+COPY database /var/www/database/
 
 COPY .env.example /var/www/
 
@@ -22,4 +26,4 @@ RUN cp .env.example /var/www/.env
 
 RUN php artisan key:generate
 
-CMD ["chown","-R", "www-data:www-data", "/var/www/"]
+RUN chown -R www-data:www-data /var/www/
