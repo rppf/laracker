@@ -1,6 +1,6 @@
 FROM php:7.1-fpm
 
-RUN RUN apt-get update -y && apt-get install -y openssl zip unzip git nginx
+RUN apt-get update -y && apt-get install -y openssl zip unzip git nginx
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
