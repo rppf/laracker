@@ -6,6 +6,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 RUN docker-php-ext-install pdo mbstring
 
+RUN apt-get install supervisor -y
+
 WORKDIR /var/www/
 
 # Add source code to working directory
