@@ -15,7 +15,7 @@ COPY . /var/www/
 RUN rm /etc/nginx/sites-enabled/default
 ADD ./vhost.conf /etc/nginx/conf.d/default.conf
 
-RUN chmod +x ./deploy/run
+RUN chmod +x ./run
 
 ENTRYPOINT ["./run"]
 
